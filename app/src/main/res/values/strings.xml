@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android_MVP_Sample</string>
+    <string name="protocol">http://</string>
+    <string name="convert">변환</string>
+</resources>
