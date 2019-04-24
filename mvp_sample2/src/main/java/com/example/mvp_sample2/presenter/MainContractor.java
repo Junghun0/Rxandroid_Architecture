@@ -7,6 +7,8 @@ public interface MainContractor {
         void showResult();
 
         void setResultURL(String url);
+
+        void onResponseFailure(Throwable throwable);
     }
 
     interface Presenter {

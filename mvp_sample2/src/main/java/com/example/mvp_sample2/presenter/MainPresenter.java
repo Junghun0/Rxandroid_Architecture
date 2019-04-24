@@ -22,6 +22,7 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void loadURL(Context context, String url) {
+        getNoticeIntractor.getNoticeURL(this,url);
     }
 
     @Override

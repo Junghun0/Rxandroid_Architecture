@@ -3,26 +3,21 @@ package com.example.mvp_sample2.presenter;
 import android.util.Log;
 
 import com.example.mvp_sample2.model.ResultUrl;
+import com.example.mvp_sample2.util.RetrofitInstance;
 import com.example.mvp_sample2.util.RetrofitService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GetNoticeImpl implements MainContractor.GetNoticeIntractor {
 
     @Override
     public void getNoticeURL(final OnFinishedListener onFinishedListener, String url) {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitService.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        RetrofitService retrofit = RetrofitInstance.getRetrofitInstance().create(RetrofitService.class);
 
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        retrofitService.sendShortURL(url).enqueue(new Callback<ResultUrl>() {
+        retrofit.sendShortURL(url).enqueue(new Callback<ResultUrl>() {
             @Override
             public void onResponse(Call<ResultUrl> call, Response<ResultUrl> response) {
                 if (response.isSuccessful()){

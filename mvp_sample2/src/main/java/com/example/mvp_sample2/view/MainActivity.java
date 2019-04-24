@@ -45,25 +45,8 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     @OnClick(R.id.send_server_btn)
     public void sendURLOnClick() {
         mainPresenter.loadURL(this,send_url_txtview.getText().toString());
-//        String sendURL = send_url_txtview.getText().toString();
-//
-//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-//        retrofitService.sendShortURL(sendURL).enqueue(new Callback<ResultUrl>() {
-//            @Override
-//            public void onResponse(Call<ResultUrl> call, Response<ResultUrl> response) {
-//                if (response.isSuccessful()){
-//                    if (response.body() != null){
-//                        showResult();
-//                        setResultURL(response.body().getResult().getUrl());
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResultUrl> call, Throwable t) {
-//                Log.e("shotURL Failure",""+t.toString());
-//            }
-//        });
+        setResultURL(send_url_txtview.getText().toString());
+        showResult();
     }
 
     @Override
@@ -80,5 +63,10 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     @Override
     public void setResultURL(String url) {
         result_url_txtview.setText(url);
+    }
+
+    @Override
+    public void onResponseFailure(Throwable throwable) {
+
     }
 }
