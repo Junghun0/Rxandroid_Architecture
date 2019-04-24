@@ -4,7 +4,9 @@ import android.content.Context;
 
 public interface MainContractor {
     interface View {
-        void notifyAdapter();
+        void showResult();
+
+        void setResultURL(String url);
     }
 
     interface Presenter {
@@ -13,6 +15,16 @@ public interface MainContractor {
 
         void detachView();
 
-        void loadItems(Context context, boolean isClear);
+        void loadURL(Context context, String url);
+    }
+
+    interface GetNoticeIntractor {
+
+        interface OnFinishedListener {
+            void onFinished(String resultURL);
+            void onFailure(Throwable t);
+        }
+
+        void getNoticeURL(OnFinishedListener onFinishedListener, String url);
     }
 }

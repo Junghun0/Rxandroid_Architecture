@@ -2,26 +2,20 @@ package com.example.mvp_sample2.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mvp_sample2.R;
-import com.example.mvp_sample2.model.ResultUrl;
+import com.example.mvp_sample2.presenter.GetNoticeImpl;
 import com.example.mvp_sample2.presenter.MainContractor;
 import com.example.mvp_sample2.presenter.MainPresenter;
-import com.example.mvp_sample2.util.RetrofitService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements MainContractor.View {
 
@@ -44,37 +38,32 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(RetrofitService.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        mainPresenter = new MainPresenter();
+        mainPresenter = new MainPresenter(this, new GetNoticeImpl());
         mainPresenter.attachView(this);
     }
 
     @OnClick(R.id.send_server_btn)
     public void sendURLOnClick() {
-        String sendURL = send_url_txtview.getText().toString();
-
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        retrofitService.sendShortURL(sendURL).enqueue(new Callback<ResultUrl>() {
-            @Override
-            public void onResponse(Call<ResultUrl> call, Response<ResultUrl> response) {
-                if (response.isSuccessful()){
-                    if (response.body() != null){
-                        Log.e("result",""+response.body().getResult().getUrl());
-                        result_linearlayout.setVisibility(View.VISIBLE);
-                        result_url_txtview.setText(response.body().getResult().getUrl());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResultUrl> call, Throwable t) {
-                Log.e("shotURL Failure",""+t.toString());
-            }
-        });
+        mainPresenter.loadURL(this,send_url_txtview.getText().toString());
+//        String sendURL = send_url_txtview.getText().toString();
+//
+//        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+//        retrofitService.sendShortURL(sendURL).enqueue(new Callback<ResultUrl>() {
+//            @Override
+//            public void onResponse(Call<ResultUrl> call, Response<ResultUrl> response) {
+//                if (response.isSuccessful()){
+//                    if (response.body() != null){
+//                        showResult();
+//                        setResultURL(response.body().getResult().getUrl());
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResultUrl> call, Throwable t) {
+//                Log.e("shotURL Failure",""+t.toString());
+//            }
+//        });
     }
 
     @Override
@@ -84,7 +73,12 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     }
 
     @Override
-    public void notifyAdapter() {
+    public void showResult() {
+        result_linearlayout.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void setResultURL(String url) {
+        result_url_txtview.setText(url);
     }
 }
