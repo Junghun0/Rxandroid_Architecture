@@ -25,6 +25,8 @@ public interface MainContract {
         void setSampleImageData(SampleImageData sampleImageData);
 
         void loadItems(Context context, boolean isClear);
+
+
     }
 
 }

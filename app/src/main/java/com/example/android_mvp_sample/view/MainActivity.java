@@ -17,6 +17,7 @@ import com.example.android_mvp_sample.model.ImageItem;
 import com.example.android_mvp_sample.model.SampleImageData;
 import com.example.android_mvp_sample.presenter.MainContract;
 import com.example.android_mvp_sample.presenter.MainPresenter;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.util.ArrayList;
 
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     RecyclerView recyclerView;
 
     private ImageAdapter imageAdapter;
-
     private MainPresenter mainPresenter;
 
     @Override
@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(getApplication());
 
         mainPresenter = new MainPresenter();
         mainPresenter.attachView(this);
@@ -66,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         mainPresenter.detachView();
     }
 
@@ -82,14 +86,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_reload) {
-            mainPresenter.loadItems(this, true);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_reload:
+                mainPresenter.loadItems(this, true);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
