@@ -33,6 +33,6 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void onFailure(Throwable t) {
-        view.onResponseFailure(t);
+        Log.e("network onFailure",""+t.toString());
     }
 }
