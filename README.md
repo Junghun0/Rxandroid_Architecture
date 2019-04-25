@@ -1,6 +1,7 @@
 # Android_MVP_Sample
 
 ### MVP Pattern
+- - -
 
 ![MVP1](https://user-images.githubusercontent.com/30828236/56715159-d5f3c980-6771-11e9-9962-36916bbe9924.png)
 
