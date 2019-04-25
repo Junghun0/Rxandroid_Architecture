@@ -20,7 +20,7 @@ public interface MainContractor {
         void loadURL(Context context, String url);
     }
 
-    interface GetNoticeIntractor {
+    interface GetServerResponse {
 
         interface OnFinishedListener {
             void onFinished(String resultURL);

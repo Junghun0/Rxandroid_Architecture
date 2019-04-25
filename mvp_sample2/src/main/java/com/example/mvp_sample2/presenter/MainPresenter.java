@@ -1,13 +1,14 @@
 package com.example.mvp_sample2.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
-public class MainPresenter implements MainContractor.Presenter, MainContractor.GetNoticeIntractor.OnFinishedListener{
+public class MainPresenter implements MainContractor.Presenter, MainContractor.GetServerResponse.OnFinishedListener{
 
     private MainContractor.View view;
-    private MainContractor.GetNoticeIntractor getNoticeIntractor;
+    private MainContractor.GetServerResponse getNoticeIntractor;
 
-    public MainPresenter(MainContractor.View view, MainContractor.GetNoticeIntractor getNoticeIntractor) {
+    public MainPresenter(MainContractor.View view, MainContractor.GetServerResponse getNoticeIntractor) {
         this.view = view;
         this.getNoticeIntractor = getNoticeIntractor;
     }
@@ -27,12 +28,11 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void onFinished(String resultURL) {
-        getNoticeIntractor.getNoticeURL(this,resultURL);
         view.setResultURL(resultURL);
     }
 
     @Override
     public void onFailure(Throwable t) {
-        view.showResult();
+        view.onResponseFailure(t);
     }
 }

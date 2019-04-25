@@ -2,25 +2,24 @@ package com.example.mvp_sample2.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mvp_sample2.R;
-import com.example.mvp_sample2.presenter.GetNoticeImpl;
+import com.example.mvp_sample2.presenter.GetServerResponseImpl;
 import com.example.mvp_sample2.presenter.MainContractor;
 import com.example.mvp_sample2.presenter.MainPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity implements MainContractor.View {
 
     private MainPresenter mainPresenter;
-    private Retrofit retrofit;
 
     @BindView(R.id.send_server_btn)
     Button send_server_btn;
@@ -38,15 +37,13 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mainPresenter = new MainPresenter(this, new GetNoticeImpl());
+        mainPresenter = new MainPresenter(this, new GetServerResponseImpl());
         mainPresenter.attachView(this);
     }
 
     @OnClick(R.id.send_server_btn)
     public void sendURLOnClick() {
-        mainPresenter.loadURL(this,send_url_txtview.getText().toString());
-        setResultURL(send_url_txtview.getText().toString());
-        showResult();
+        mainPresenter.loadURL(this, send_url_txtview.getText().toString());
     }
 
     @Override
@@ -56,17 +53,20 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     }
 
     @Override
+    public void setResultURL(String url) {
+        if (url != null){
+            result_url_txtview.setText(url);
+            showResult();
+        }
+    }
+
+    @Override
     public void showResult() {
         result_linearlayout.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void setResultURL(String url) {
-        result_url_txtview.setText(url);
-    }
-
-    @Override
     public void onResponseFailure(Throwable throwable) {
-
+        Log.e("response Failure",""+throwable.toString());
     }
 }

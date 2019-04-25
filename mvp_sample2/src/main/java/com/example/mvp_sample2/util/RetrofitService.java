@@ -9,8 +9,6 @@ import retrofit2.http.Query;
 
 public interface RetrofitService {
 
-    String URL = "https://openapi.naver.com/v1/util/";
-
     @Headers({"X-Naver-Client-Id: eaDhg_XFv_WzmBETR68q","X-Naver-Client-Secret: XKI44UthqV"})
     @GET("shorturl.json")
     Call<ResultUrl> sendShortURL(@Query("url") String url);

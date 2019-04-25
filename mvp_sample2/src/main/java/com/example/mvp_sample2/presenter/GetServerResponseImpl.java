@@ -10,7 +10,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GetNoticeImpl implements MainContractor.GetNoticeIntractor {
+public class GetServerResponseImpl implements MainContractor.GetServerResponse {
 
     @Override
     public void getNoticeURL(final OnFinishedListener onFinishedListener, String url) {
@@ -27,13 +27,11 @@ public class GetNoticeImpl implements MainContractor.GetNoticeIntractor {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<ResultUrl> call, Throwable t) {
                 onFinishedListener.onFailure(t);
                 Log.e("shotURL Failure",""+t.toString());
             }
         });
-
     }
 }
