@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        
+
         MovieRecyclerAdapter adapter = new MovieRecyclerAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         movie_recyclerView.setLayoutManager(linearLayoutManager);
