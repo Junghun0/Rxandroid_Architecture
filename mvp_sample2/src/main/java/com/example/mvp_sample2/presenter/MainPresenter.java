@@ -3,7 +3,7 @@ package com.example.mvp_sample2.presenter;
 import android.content.Context;
 import android.util.Log;
 
-public class MainPresenter implements MainContractor.Presenter, MainContractor.GetServerResponse.OnFinishedListener{
+public class MainPresenter implements MainContractor.Presenter, MainContractor.GetServerResponse.OnFinishedListener {
 
     private MainContractor.View view;
     private MainContractor.GetServerResponse getNoticeIntractor;
@@ -19,11 +19,13 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
     }
 
     @Override
-    public void detachView() {view = null;}
+    public void detachView() {
+        view = null;
+    }
 
     @Override
     public void loadURL(Context context, String url) {
-        getNoticeIntractor.getNoticeURL(this,url);
+        getNoticeIntractor.getNoticeURL(this, url);
     }
 
     @Override
@@ -33,6 +35,7 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void onFailure(Throwable t) {
-        Log.e("network onFailure",""+t.toString());
+        Log.e("network onFailure", "" + t.toString());
     }
 }
+
