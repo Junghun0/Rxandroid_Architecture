@@ -4,7 +4,7 @@
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="7dp"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="#B1C6C9"
     app:cardCornerRadius="8dp"
     app:cardElevation="10dp">
@@ -31,13 +31,18 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
+                android:layout_marginRight="5dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/movie_title_textView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="25sp"
+                    android:layout_height="30dp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textStyle="bold"
                     tool:text="제목" />
 
                 <ImageView
@@ -57,57 +62,174 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/movie_openDate_textView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="17sp"
-                    tool:text="개봉일" />
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/movie_today_audience_textView"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:autoSizeMaxTextSize="17sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center_vertical"
+                        android:text="개봉일" />
+
+                    <TextView
+                        android:id="@+id/movie_openDate_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="17sp"
-                    tool:text="금일관객수" />
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/movie_audience_textView"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center_vertical"
+                        android:text="금일관객수"/>
+
+                    <TextView
+                        android:id="@+id/movie_today_audience_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="17sp"
-                    tool:text="누적관객수" />
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/movie_audience_rate_textView"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center_vertical"
+                        android:text="누적관객수"/>
+
+                    <TextView
+                        android:id="@+id/movie_audience_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:gravity="center"
+                        android:autoSizeTextType="uniform" />
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="17sp"
-                    tool:text="전일대비관객수" />
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/movie_sales_textView"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="전일대비관객수"/>
+
+                    <TextView
+                        android:id="@+id/movie_audience_rate_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:gravity="center"
+                        android:autoSizeTextType="uniform" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="17sp"
-                    tool:text="매출액" />
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/movie_totalSales_textView"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:autoSizeMaxTextSize="17sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="매출액"/>
+
+                    <TextView
+                        android:id="@+id/movie_sales_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:textSize="17sp"
-                    tool:text="누적매출액" />
+                    android:layout_weight="1">
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:text="누적매출액" />
 
+                    <TextView
+                        android:id="@+id/movie_totalSales_textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:maxLines="1" />
+
+                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

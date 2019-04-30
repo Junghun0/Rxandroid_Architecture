@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mvp_rxjava.R;
-import com.example.mvp_rxjava.data.MovieData;
+import com.example.mvp_rxjava.data.DailyBoxOfficeList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
     
     private MovieRecyclerClickListener mListener;
     
-    private List<MovieData> mItems = new ArrayList<>();
+    private List<DailyBoxOfficeList> mItems = new ArrayList<>();
 
     public MovieRecyclerAdapter() {}
 
@@ -30,14 +30,14 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         mListener = listener;
     }
 
-    public void setItems(List<MovieData> items) {
+    public void setItems(List<DailyBoxOfficeList> items) {
         this.mItems = items;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int position) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_item_layout, parent, false);
         final MovieViewHolder viewHolder = new MovieViewHolder(view);
@@ -45,8 +45,13 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    final MovieData item = mItems.get(viewHolder.getAdapterPosition());
-                    mListener.onDetailClickListener();
+                    final int pos = position;
+                    viewHolder.movie_imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mListener.onDetailClickListener();
+                        }
+                    });
                 }
             }
         });
@@ -55,15 +60,16 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-         MovieData movieData = mItems.get(position);
+         DailyBoxOfficeList dailyBoxOfficeList = mItems.get(position);
 
-         holder.movie_rank_textView.setText(movieData.getRank());
-         holder.movie_title_textView.setText(movieData.getMovieNm());
-         holder.movie_audience_rate_textView.setText(movieData.getAudiChange());
-         holder.movie_openDate_textView.setText(movieData.getOpenDt());
-         holder.movie_sales_textView.setText(movieData.getSalesAmt());
-         holder.movie_totalSales_textView.setText(movieData.getSalesAcc());
-         holder.movie_audience_textView.setText(movieData.getAudiCnt());
+         holder.movie_rank_textView.setText(dailyBoxOfficeList.getRank());
+         holder.movie_title_textView.setText(dailyBoxOfficeList.getMovieNm());
+         holder.movie_audience_rate_textView.setText(dailyBoxOfficeList.getAudiChange());
+         holder.movie_openDate_textView.setText(dailyBoxOfficeList.getOpenDt());
+         holder.movie_sales_textView.setText(dailyBoxOfficeList.getSalesAmt());
+         holder.movie_totalSales_textView.setText(dailyBoxOfficeList.getSalesAcc());
+         holder.movie_audience_textView.setText(dailyBoxOfficeList.getAudiAcc());
+         holder.movie_today_audience_textView.setText(dailyBoxOfficeList.getAudiCnt());
 
     }
 
@@ -80,6 +86,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         TextView movie_sales_textView;
         TextView movie_totalSales_textView;
         TextView movie_audience_textView;
+        TextView movie_today_audience_textView;
         ImageView movie_imageView;
 
         public MovieViewHolder(@NonNull View itemView) {
@@ -91,6 +98,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
             movie_sales_textView = itemView.findViewById(R.id.movie_sales_textView);
             movie_totalSales_textView = itemView.findViewById(R.id.movie_totalSales_textView);
             movie_audience_textView = itemView.findViewById(R.id.movie_audience_textView);
+            movie_today_audience_textView = itemView.findViewById(R.id.movie_today_audience_textView);
             movie_imageView = itemView.findViewById(R.id.movie_imageView);
             // TODO : 뷰홀더 완성하시오
         }

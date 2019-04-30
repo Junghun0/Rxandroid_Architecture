@@ -24,7 +24,7 @@ scrnCnt	문자열	해당일자에 상영한 스크린수를 출력합니다.
 showCnt	문자열	해당일자에 상영된 횟수를 출력합니다.
 */
 
-public class MovieData {
+public class DailyBoxOfficeList {
 
     private String movieNm;
     private String boxofficeType; //박스오피스 종류
@@ -36,21 +36,6 @@ public class MovieData {
     private String audiCnt; // 해당일의 관객수를 출력
     private String audiAcc; // 누적관객수를 출력
     private String audiChange; // 전일 대비 관객수 증감비
-
-    public MovieData(){}
-
-    public MovieData(String movieNm, String boxofficeType, String showRange, String rank, String openDt, String salesAmt, String salesAcc, String audiCnt, String audiAcc, String audiChange) {
-        this.movieNm = movieNm;
-        this.boxofficeType = boxofficeType;
-        this.showRange = showRange;
-        this.rank = rank;
-        this.openDt = openDt;
-        this.salesAmt = salesAmt;
-        this.salesAcc = salesAcc;
-        this.audiCnt = audiCnt;
-        this.audiAcc = audiAcc;
-        this.audiChange = audiChange;
-    }
 
     public String getAudiChange() {
         return audiChange;
