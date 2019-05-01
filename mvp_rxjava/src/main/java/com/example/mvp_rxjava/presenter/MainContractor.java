@@ -2,6 +2,7 @@ package com.example.mvp_rxjava.presenter;
 
 import android.content.Context;
 
+import com.example.mvp_rxjava.data.MovieDetail;
 import com.example.mvp_rxjava.data.ServerResponse;
 
 public interface MainContractor {
@@ -10,6 +11,14 @@ public interface MainContractor {
         void showResult();
 
         void setMovieInfo(ServerResponse serverResponse);
+
+        void setMovieDetails(MovieDetail movieDetails);
+
+        void setTodayDate(String todayDate);
+
+        void getDateInfo();
+
+        void initRecyclerView();
     }
 
     interface Presenter {
@@ -18,7 +27,7 @@ public interface MainContractor {
 
         void detachView();
 
-        void getMovieInfo(Context context, String key);
+        void getMovieInfo(Context context, String key, String todayDate);
 
     }
 
@@ -28,8 +37,16 @@ public interface MainContractor {
             void onFinished(ServerResponse serverResponse);
             void onFailure(Throwable t);
         }
+        void getMovieInfo(OnFinishedListener onFinishedListener, String key, String targetDate);
+    }
 
-        void getMovieInfo(OnFinishedListener onFinishedListener, String key);
+    interface GetMovieDetails{
+
+        interface OnFinishedListener{
+            void onFinished(MovieDetail movieDetail);
+            void onFailure(Throwable t);
+        }
+        void getMovieDetail(GetMovieDetails.OnFinishedListener onFinishedListener, String names);
     }
 
 }

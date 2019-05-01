@@ -19,8 +19,7 @@
             android:background="#9C27B0"
             android:textColor="#050509"
             android:gravity="center"
-            android:textSize="20sp"
-            android:text="2019년 4월 29일 박스오피스 순위"/>
+            android:textSize="20sp"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/movie_recyclerView"

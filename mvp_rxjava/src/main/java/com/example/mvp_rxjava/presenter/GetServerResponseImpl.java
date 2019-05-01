@@ -13,10 +13,10 @@ public class GetServerResponseImpl implements MainContractor.GetServerResponse {
     ServerResponse boxOfficeResult;
 
     @Override
-    public void getMovieInfo(final OnFinishedListener onFinishedListener, String key) {
+    public void getMovieInfo(final OnFinishedListener onFinishedListener, String key, String targetDt) {
         RetrofitService retrofit = RetrofitInstance.getRetrofitInstance().create(RetrofitService.class);
 
-        retrofit.getMovieInfo("f8528e508b93d59e755310d63eb0455a", "20190429").enqueue(new Callback<ServerResponse>() {
+        retrofit.getMovieInfo("f8528e508b93d59e755310d63eb0455a", targetDt).enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
                 if (response.isSuccessful()){

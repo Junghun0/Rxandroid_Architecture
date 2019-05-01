@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">mvp_rxjava</string>
+    <string name="boxoffice"> 박스오피스 순위</string>
 </resources>
