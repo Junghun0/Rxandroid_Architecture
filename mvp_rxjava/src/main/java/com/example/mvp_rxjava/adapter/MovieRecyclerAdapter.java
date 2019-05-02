@@ -2,14 +2,17 @@ package com.example.mvp_rxjava.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mvp_rxjava.MainActivity;
 import com.example.mvp_rxjava.R;
 import com.example.mvp_rxjava.data.DailyBoxOfficeList;
+import com.example.mvp_rxjava.data.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +24,12 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
     }
     
     private MovieRecyclerClickListener mListener;
+    private MainActivity mContext;
     
     private List<DailyBoxOfficeList> mItems = new ArrayList<>();
+    private List<Item> mDetailsItem = new ArrayList<>();
 
-    public MovieRecyclerAdapter() {}
+    public MovieRecyclerAdapter(MainActivity mContext) {this.mContext = mContext;}
 
     public MovieRecyclerAdapter(MovieRecyclerClickListener listener) {
         mListener = listener;
@@ -34,6 +39,13 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         this.mItems = items;
         notifyDataSetChanged();
     }
+
+    public void setItemThumbnail(List<Item> detailsItem){
+        this.mDetailsItem = detailsItem;
+        Log.e("at adapter",""+detailsItem.size());
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -70,6 +82,8 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
          holder.movie_totalSales_textView.setText(dailyBoxOfficeList.getSalesAcc());
          holder.movie_audience_textView.setText(dailyBoxOfficeList.getAudiAcc());
          holder.movie_today_audience_textView.setText(dailyBoxOfficeList.getAudiCnt());
+
+        //Glide.with(mContext).load(mDetailsItem.get(position).getImage()).into(holder.movie_imageView);
 
     }
 

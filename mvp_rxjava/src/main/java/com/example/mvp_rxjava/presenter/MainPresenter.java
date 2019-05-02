@@ -10,10 +10,12 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     private MainContractor.View view;
     private MainContractor.GetServerResponse getNoticeIntractor;
+    private MainContractor.GetMovieDetails getMovieDetails;
 
-    public MainPresenter(MainContractor.View view, MainContractor.GetServerResponse getNoticeIntractor) {
+    public MainPresenter(MainContractor.View view, MainContractor.GetServerResponse getNoticeIntractor, MainContractor.GetMovieDetails getMovieDetails) {
         this.view = view;
         this.getNoticeIntractor = getNoticeIntractor;
+        this.getMovieDetails = getMovieDetails;
     }
 
     @Override
@@ -31,6 +33,11 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
         getNoticeIntractor.getMovieInfo(this,"f8528e508b93d59e755310d63eb0455a",todayDate);
     }
 
+    @Override
+    public void getMovieThumnail(Context context, String query) {
+        getMovieDetails.getMovieDetail(this,query);
+    }
+
 
     @Override
     public void onFinished(ServerResponse serverResponse) {
@@ -39,7 +46,7 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void onFinished(MovieDetail movieDetail) {
-
+        view.setMovieDetails(movieDetail);
     }
 
     @Override

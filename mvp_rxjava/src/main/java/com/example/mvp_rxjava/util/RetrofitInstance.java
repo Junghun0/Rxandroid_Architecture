@@ -5,6 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
     private static Retrofit retrofit;
+    private static Retrofit moiverRetrofit;
     private static final String BASE_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/";
     private static final String BASE_URL_MOVIE = "https://openapi.naver.com/v1/search/";
 
@@ -19,12 +20,12 @@ public class RetrofitInstance {
     }
 
     public static Retrofit getRetrofitInstance2(){
-        if (retrofit == null) {
-            retrofit = new retrofit2.Retrofit.Builder()
+        if (moiverRetrofit == null) {
+            moiverRetrofit = new retrofit2.Retrofit.Builder()
                     .baseUrl(BASE_URL_MOVIE)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-        return retrofit;
+        return moiverRetrofit;
     }
 }

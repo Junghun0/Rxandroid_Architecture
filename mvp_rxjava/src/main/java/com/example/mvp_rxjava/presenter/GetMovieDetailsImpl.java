@@ -12,7 +12,7 @@ import retrofit2.Response;
 
 public class GetMovieDetailsImpl implements MainContractor.GetMovieDetails{
     @Override
-    public void getMovieDetail(OnFinishedListener onFinishedListener, String names) {
+    public void getMovieDetail(final OnFinishedListener onFinishedListener, String names) {
 
         RetrofitService retrofit = RetrofitInstance.getRetrofitInstance2().create(RetrofitService.class);
 
@@ -21,13 +21,15 @@ public class GetMovieDetailsImpl implements MainContractor.GetMovieDetails{
             public void onResponse(Call<MovieDetail> call, Response<MovieDetail> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        Log.e("name search Success","success"+response.body());
+                        onFinishedListener.onFinished(response.body());
+                        Log.e("at implements","size->"+response.body().getItems().size()+","+response.body().getItems().get(0).getTitle());
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<MovieDetail> call, Throwable t) {
+                onFinishedListener.onFailure(t);
                 Log.e("name search fail",""+t.toString());
             }
         });

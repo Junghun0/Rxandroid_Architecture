@@ -10,6 +10,8 @@ public interface MainContractor {
     interface View {
         void showResult();
 
+        void showImageURL(ServerResponse serverResponse);
+
         void setMovieInfo(ServerResponse serverResponse);
 
         void setMovieDetails(MovieDetail movieDetails);
@@ -28,6 +30,8 @@ public interface MainContractor {
         void detachView();
 
         void getMovieInfo(Context context, String key, String todayDate);
+
+        void getMovieThumnail(Context context, String query);
 
     }
 

@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.mvp_rxjava.adapter.MovieRecyclerAdapter;
 import com.example.mvp_rxjava.data.MovieDetail;
 import com.example.mvp_rxjava.data.ServerResponse;
+import com.example.mvp_rxjava.presenter.GetMovieDetailsImpl;
 import com.example.mvp_rxjava.presenter.GetServerResponseImpl;
 import com.example.mvp_rxjava.presenter.MainContractor;
 import com.example.mvp_rxjava.presenter.MainPresenter;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     private final String key = "f8528e508b93d59e755310d63eb0455a";
     private SimpleDateFormat todayFormat;
     private String targetDt;
+    private List<String> movieNames;
 
     @BindView(R.id.movie_recyclerView)
     RecyclerView movie_recyclerView;
@@ -41,7 +46,9 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mainPresenter = new MainPresenter(this, new GetServerResponseImpl());
+        movieNames = new ArrayList<>();
+
+        mainPresenter = new MainPresenter(this, new GetServerResponseImpl(), new GetMovieDetailsImpl());
         mainPresenter.attachView(this);
 
         initRecyclerView();
@@ -49,10 +56,9 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         showResult();
     }
 
-
     @Override
     public void initRecyclerView() {
-        adapter = new MovieRecyclerAdapter();
+        adapter = new MovieRecyclerAdapter(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         movie_recyclerView.setLayoutManager(linearLayoutManager);
         movie_recyclerView.setAdapter(adapter);
@@ -60,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
 
     @Override
     protected void onDestroy() {
+        mainPresenter.detachView();
         super.onDestroy();
     }
 
@@ -69,14 +76,26 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     }
 
     @Override
+    public void showImageURL(ServerResponse serverResponse) {
+        for (int i = 0; i < serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size() ; i++){
+            mainPresenter.getMovieThumnail(this,serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
+            Log.e("요청할때",""+serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
+        }
+
+    }
+
+    @Override
     public void setMovieInfo(ServerResponse serverResponse) {
         adapter.setItems(serverResponse.getBoxOfficeResult().getDailyBoxOfficeList());
+        showImageURL(serverResponse);
     }
 
     @Override
     public void setMovieDetails(MovieDetail movieDetails) {
-
+        Log.e("at Main-",""+movieDetails.getItems().get(0).getImage());
+        adapter.setItemThumbnail(movieDetails.getItems());
     }
+
 
     @Override
     public void setTodayDate(String todayDate) {
@@ -94,8 +113,6 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         targetDt = todayFormat.format(calendar.getTime());
         setTodayDate(todayDate);
     }
-
-
 }
 
 
