@@ -93,9 +93,11 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     @Override
     public void setMovieDetails(MovieDetail movieDetails) {
         Log.e("at Main-",""+movieDetails.getItems().get(0).getImage());
-        adapter.setItemThumbnail(movieDetails.getItems());
+        movieNames.add(movieDetails.getItems().get(0).getImage());
+        if (movieNames.size() == 10){
+            adapter.setItemThumbnail(movieNames);
+        }
     }
-
 
     @Override
     public void setTodayDate(String todayDate) {

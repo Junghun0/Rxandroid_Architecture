@@ -2,17 +2,16 @@ package com.example.mvp_rxjava.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mvp_rxjava.MainActivity;
 import com.example.mvp_rxjava.R;
 import com.example.mvp_rxjava.data.DailyBoxOfficeList;
-import com.example.mvp_rxjava.data.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
     private MainActivity mContext;
     
     private List<DailyBoxOfficeList> mItems = new ArrayList<>();
-    private List<Item> mDetailsItem = new ArrayList<>();
+    private List<String> mThumNailsList = new ArrayList<>();
 
     public MovieRecyclerAdapter(MainActivity mContext) {this.mContext = mContext;}
 
@@ -40,9 +39,12 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         notifyDataSetChanged();
     }
 
-    public void setItemThumbnail(List<Item> detailsItem){
-        this.mDetailsItem = detailsItem;
-        Log.e("at adapter",""+detailsItem.size());
+    public void addThumNail(String imageURL){
+        mThumNailsList.add(imageURL);
+    }
+
+    public void setItemThumbnail(List<String> thumbnail){
+        this.mThumNailsList = thumbnail;
         notifyDataSetChanged();
     }
 
@@ -83,7 +85,10 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
          holder.movie_audience_textView.setText(dailyBoxOfficeList.getAudiAcc());
          holder.movie_today_audience_textView.setText(dailyBoxOfficeList.getAudiCnt());
 
-        //Glide.with(mContext).load(mDetailsItem.get(position).getImage()).into(holder.movie_imageView);
+         if (mThumNailsList.size() == 10){
+             Glide.with(mContext).load(mThumNailsList.get(position)).into(holder.movie_imageView);
+         }
+
 
     }
 
