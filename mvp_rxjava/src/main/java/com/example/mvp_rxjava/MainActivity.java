@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.mvp_rxjava.adapter.MovieRecyclerAdapter;
@@ -77,11 +76,20 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
 
     @Override
     public void showImageURL(ServerResponse serverResponse) {
-        for (int i = 0; i < serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size() ; i++){
-            mainPresenter.getMovieThumnail(this,serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
-            Log.e("요청할때",""+serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
-        }
+//        if (serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size() == 10){
+//            for (int i = 0; i < serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size() ; i++){
+//                mainPresenter.getMovieThumbNail(this,serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
+//            }
+//        }
+    }
 
+    @Override
+    public void showImageURL(List<String> movienames) {
+        if (movienames.size() == 10){
+            for (int i = 0 ; i < movienames.size() ; i++){
+                mainPresenter.getMovieThumbNail(this, movieNames.get(i));
+            }
+        }
     }
 
     @Override
@@ -92,11 +100,12 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
 
     @Override
     public void setMovieDetails(MovieDetail movieDetails) {
-        Log.e("at Main-",""+movieDetails.getItems().get(0).getImage());
-        movieNames.add(movieDetails.getItems().get(0).getImage());
-        if (movieNames.size() == 10){
-            adapter.setItemThumbnail(movieNames);
-        }
+//        Log.e("at Main-", "" + movieDetails.getItems().get(0).getImage());
+//        movieNames.add(movieDetails.getItems().get(0).getImage());
+//        Log.e("at Main-", "" + movieDetails.getItems().size());
+//        if (movieNames.size() == 10) {
+//            adapter.setItemThumbnail(movieNames);
+//        }
     }
 
     @Override

@@ -6,7 +6,9 @@ import android.util.Log;
 import com.example.mvp_rxjava.data.MovieDetail;
 import com.example.mvp_rxjava.data.ServerResponse;
 
-public class MainPresenter implements MainContractor.Presenter, MainContractor.GetServerResponse.OnFinishedListener, MainContractor.GetMovieDetails.OnFinishedListener{
+import java.util.List;
+
+public class MainPresenter implements MainContractor.Presenter, MainContractor.GetServerResponse.OnFinishedListener, MainContractor.GetMovieDetails.OnFinishedListener {
 
     private MainContractor.View view;
     private MainContractor.GetServerResponse getNoticeIntractor;
@@ -30,14 +32,13 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void getMovieInfo(Context context, String key, String todayDate) {
-        getNoticeIntractor.getMovieInfo(this,"f8528e508b93d59e755310d63eb0455a",todayDate);
+        getNoticeIntractor.getMovieInfo(this, "f8528e508b93d59e755310d63eb0455a", todayDate);
     }
 
     @Override
-    public void getMovieThumnail(Context context, String query) {
-        getMovieDetails.getMovieDetail(this,query);
+    public void getMovieThumbNail(Context context, String query) {
+        getMovieDetails.getMovieDetail(this, query);
     }
-
 
     @Override
     public void onFinished(ServerResponse serverResponse) {
@@ -51,6 +52,16 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 
     @Override
     public void onFailure(Throwable t) {
-        Log.e("network Fail",""+t.toString());
+        Log.e("network Fail", "" + t.toString());
+    }
+
+    @Override
+    public void sendMovieNames(List<String> movieNames) {
+        if (movieNames.size() == 10){
+            for (int i = 0; i < movieNames.size(); i++) {
+                Log.e("at mainpresenter",""+movieNames.get(i));
+            }
+        }
+
     }
 }

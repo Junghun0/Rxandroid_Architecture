@@ -21,8 +21,8 @@ public class GetMovieDetailsImpl implements MainContractor.GetMovieDetails{
             public void onResponse(Call<MovieDetail> call, Response<MovieDetail> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
+                        Log.e("at implements",""+response.body().getItems().get(0).getImage());
                         onFinishedListener.onFinished(response.body());
-                        Log.e("at implements","size->"+response.body().getItems().size()+","+response.body().getItems().get(0).getTitle());
                     }
                 }
             }

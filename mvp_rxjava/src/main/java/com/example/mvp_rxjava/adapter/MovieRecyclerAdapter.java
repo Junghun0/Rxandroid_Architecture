@@ -88,8 +88,6 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
          if (mThumNailsList.size() == 10){
              Glide.with(mContext).load(mThumNailsList.get(position)).into(holder.movie_imageView);
          }
-
-
     }
 
     @Override
