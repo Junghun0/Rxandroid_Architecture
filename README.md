@@ -148,6 +148,34 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
 }
    
  ~~~
+ 
+ 
+- - -
+
+### RxAndroid 기본
+- - - 
+
+ - **Observable** : 비즈니스 로직을 이용해 데이터를 발행함
+ - **구독자** : Observable에서 발행한 데이터를 구독함
+ - **스케줄러** : 스케줄러를 통해서 Observable, 구독자가 어느 스레드에서 실행될지 결정할 수 있다.
+
+- - -
+~~~java
+//1.Observable 생성
+Observable.create()
+	//2.구독자 이용
+	.subscribe();
+		
+	//3.스케줄러 이용
+	.subscribeOn(Schedulers.io())
+	.observeOn(AndroidSchedulers.mainThread())
+~~~
+
+| 스케줄러 이름 | 설명 
+|---|:---:|
+| `AndroidSchedulers.mainThread()` | 안드로이드의 UI 스레드에서 동작하는 스케줄러이다. |
+| `HandlerScheduler.from(handler)` | 특정 핸들러에 의존하여 동작하는 스케줄러이다. |
+  
 
 
 
