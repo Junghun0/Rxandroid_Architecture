@@ -53,7 +53,8 @@ public class HelloActivityV1 extends AppCompatActivity {
             }
         }).subscribeWith(observer);
 
-        Observable.just("Test2").subscribe(textView::setText);
+        Observable.just("Hello, rx world!")
+                .subscribe(textView::setText);
     }
 
     @Override

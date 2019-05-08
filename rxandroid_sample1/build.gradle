@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.1.0'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
     // Utils
-//    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     implementation 'com.jakewharton.timber:timber:4.4.0'
 
