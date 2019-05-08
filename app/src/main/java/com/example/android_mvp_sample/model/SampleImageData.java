@@ -12,7 +12,7 @@ public class SampleImageData {
 
     private static SampleImageData sampleImageData;
 
-    public static SampleImageData getInstance() {
+    public static synchronized SampleImageData getInstance() {
         if (sampleImageData == null) {
             sampleImageData = new SampleImageData();
         }

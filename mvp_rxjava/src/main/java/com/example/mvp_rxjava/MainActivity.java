@@ -1,9 +1,9 @@
 package com.example.mvp_rxjava;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutManager;
+import androidx.appcompat.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.mvp_rxjava.adapter.MovieRecyclerAdapter;

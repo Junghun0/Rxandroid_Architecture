@@ -2,10 +2,12 @@
 
 buildscript {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven {
             url "http://dl.bintray.com/glomadrian/maven"
+                "https://oss.sonatype.org/content/repositories/snapshots"
         }
         
     }
