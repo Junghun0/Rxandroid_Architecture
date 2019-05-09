@@ -12,14 +12,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Sample_1"/>
+        android:text="Sample_1" />
 
     <Button
         android:id="@+id/loop_activity_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Loop_activity"/>
+        android:text="Loop_activity" />
+
+    <Button
+        android:id="@+id/onclick_activity_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Onclick_activity" />
 
 
 </LinearLayout>

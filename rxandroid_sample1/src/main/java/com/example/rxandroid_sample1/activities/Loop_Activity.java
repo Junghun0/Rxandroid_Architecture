@@ -97,7 +97,6 @@ public class Loop_Activity extends AppCompatActivity {
 
     }
 
-
     private void log(String log) {
         mLogs.add(log);
         mLogAdapter.clear();

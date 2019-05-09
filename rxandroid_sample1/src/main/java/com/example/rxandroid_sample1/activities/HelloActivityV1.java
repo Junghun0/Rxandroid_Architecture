@@ -52,7 +52,7 @@ public class HelloActivityV1 extends AppCompatActivity {
                 e.onComplete();
             }
         }).subscribeWith(observer);
-
+        
         Observable.just("Hello, rx world!")
                 .subscribe(textView::setText);
     }
