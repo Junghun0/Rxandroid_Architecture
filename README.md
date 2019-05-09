@@ -175,9 +175,27 @@ Observable.create()
 |---|:---:|
 | `AndroidSchedulers.mainThread()` | 안드로이드의 UI 스레드에서 동작하는 스케줄러이다. |
 | `HandlerScheduler.from(handler)` | 특정 핸들러에 의존하여 동작하는 스케줄러이다. |
-  
 
 
+### RxLifeCycle 컴포넌트
+- - -
 
+| 컴포넌트 | 설명 
+|---|:---:|
+| `RxActivity` | 액티비티에 대응한다.|
+| `RxDialogFragment` | Native/Support 라이브러리인 DialogFragment에 대응한다. |
+| `RxFragment` | Native/Support 라이브러리인 Fragment에 대응 |
+| `RxPreferenceFragment` | PreferenceFragment에 대응한다. |
+| `RxAppCompatActivity` | Support 라이브러리 AppCompatActivity에 대응한다. |
+| `RxAppCompatDialogFragment` | Support 라이브러리 AppCompatDialogFragment에 대응한다. |
+| `RxFragmentActivity` | Support 라이브러리 FragmentActivity에 대응한다. |
 
+- - - 
+#### RxLifeCycle 라이브러리 사용
+`implementation 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'`
 
+// If you want to bind to Android-specific lifecycles
+`implementation 'com.trello.rxlifecycle3:rxlifecycle-android:3.0.0'`
+
+// If you want pre-written Activities and Fragments you can subclass as providers
+`implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'`
