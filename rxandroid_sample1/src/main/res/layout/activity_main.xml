@@ -28,5 +28,12 @@
         android:layout_gravity="center"
         android:text="Onclick_activity" />
 
+    <Button
+        android:id="@+id/onclick_search_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="search_activity"/>
+
 
 </LinearLayout>

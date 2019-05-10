@@ -17,7 +17,6 @@ import java.util.Random;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -48,21 +47,21 @@ public class Onclick_Activity extends AppCompatActivity {
         mUnbinder = ButterKnife.bind(this);
         setupLogger();
 
-//        getClickEventObservable()
-//                .map(s -> "clicked")
-//                .subscribe(getObserver());
+        getClickEventObservable()
+                .map(s -> "clicked") // clicked 라는 string 으로 변경된다. -> Observable<View> 에서 Observable<String>으로 변경됨.
+                .subscribe(getObserver()); // 옵서버는 clicked 를 출력한다.
 
-//        getClickEventObservableWithLambda()
-//                .map(s -> "clicked lambda")
-//                .subscribe(this::log);
+        getClickEventObservableWithLambda()
+                .map(s -> "clicked lambda")
+                .subscribe(this::log);
 
-//        getClickEventObservableWithRxBinding()
-//                .subscribe(this::log);
+        getClickEventObservableWithRxBinding()
+                .subscribe(this::log);
 
-//        getClickEventObservableExtra()
-//                .map(local -> SEVEN)
-//                .flatMap(this::compareNumbers)
-//                .subscribe(this::log);
+        getClickEventObservableExtra()
+                .map(local -> SEVEN)
+                .flatMap(this::compareNumbers)
+                .subscribe(this::log);
     }
 
     @Override
@@ -71,28 +70,28 @@ public class Onclick_Activity extends AppCompatActivity {
         mUnbinder.unbind();
     }
 
-    @OnClick(R.id.btn_click_observer)
-    void normalBtnOnclick() {
-        log("clicked");
-    }
-
-    @OnClick(R.id.btn_click_observer_lambda)
-    void lambdaBtnOnClick() {
-        log("clicked lambda");
-    }
-
-    @OnClick(R.id.btn_click_observer_binding)
-    void bindingBtnOnClick() {
-        log("Clicked Rxbinding");
-    }
-
-    @OnClick(R.id.btn_click_observer_extra)
-    void extraBtnOnclick() {
-        Random random = new Random();
-        int data = random.nextInt(10);
-
-        log("local : " + String.valueOf(data) + "remote : " + String.valueOf(data) + "result = " + data);
-    }
+//    @OnClick(R.id.btn_click_observer)
+//    void normalBtnOnclick() {
+//        log("clicked");
+//    }
+//
+//    @OnClick(R.id.btn_click_observer_lambda)
+//    void lambdaBtnOnClick() {
+//        log("clicked lambda");
+//    }
+//
+//    @OnClick(R.id.btn_click_observer_binding)
+//    void bindingBtnOnClick() {
+//        log("Clicked Rxbinding");
+//    }
+//
+//    @OnClick(R.id.btn_click_observer_extra)
+//    void extraBtnOnclick() {
+//        Random random = new Random();
+//        int data = random.nextInt(10);
+//
+//        log("local : " + String.valueOf(data) + "remote : " + String.valueOf(data) + "result = " + data);
+//    }
 
     private Observable<View> getClickEventObservable() {
         return Observable.create(new ObservableOnSubscribe<View>() {
@@ -111,7 +110,7 @@ public class Onclick_Activity extends AppCompatActivity {
 
     private Observable<String> getClickEventObservableWithRxBinding() {
         //rxbinding
-        return RxView.clicks(mButtonBinding)
+        return RxView.clicks(mButtonBinding) //RxView 객체를 사용하면 Observable의 명시적 생성이 필요없다. RxView 내부에서 자동 처리되어 코드가 더욱 직관적으로변하고 가독성도 향상됨
                 .map(s -> "Clicked Rxbinding");
     }
 

@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.example.rxandroid_sample1.activities.HelloActivityV1;
 import com.example.rxandroid_sample1.activities.Loop_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
+import com.example.rxandroid_sample1.activities.Search_Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Button loop_activity_btn;
     @BindView(R.id.onclick_activity_btn)
     Button onclick_activity_btn;
+    @BindView(R.id.onclick_search_btn)
+    Button onclick_search_btn;
 
     private Unbinder mUnbinder;
 
@@ -48,6 +51,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.onclick_activity_btn)
     public void goToOnclickActivity(){
         Intent intent = new Intent(getApplicationContext(), Onclick_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.onclick_search_btn)
+    public void goToSearchActivity(){
+        Intent intent = new Intent(getApplicationContext(), Search_Activity.class);
         startActivity(intent);
     }
 
