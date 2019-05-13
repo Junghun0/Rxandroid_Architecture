@@ -11,6 +11,12 @@
         android:id="@+id/async_test_txtview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17sp"/>
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/rxandroid_async_txtview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
 
 </LinearLayout>
