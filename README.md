@@ -201,3 +201,14 @@ Observable.create()
 // If you want pre-written Activities and Fragments you can subclass as providers
 
 `implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'`
+
+- - -
+
+### RxAndroid 와 AsyncTask클래스의 기능 비교
+- - -
+
+| AsyncTask | RxAndroid |
+|---|:---:|
+| `excute()` | subscribe()|
+| `doInBackground()` | 리액티브 연산자와 함께 사용하는 onSubscibe() |
+| `onPostExecuted()` | observer |
