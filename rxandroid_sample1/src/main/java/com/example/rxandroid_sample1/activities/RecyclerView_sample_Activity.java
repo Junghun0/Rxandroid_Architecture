@@ -32,7 +32,7 @@ public class RecyclerView_sample_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view_sample);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerAdapter = new RecyclerAdapter();

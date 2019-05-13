@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.rxandroid_sample1.activities.AsyncTask_Activity;
 import com.example.rxandroid_sample1.activities.HelloActivityV1;
 import com.example.rxandroid_sample1.activities.Loop_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
@@ -66,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.onclick_recycler_btn)
     public void goToRecyclerviewActivity(){
         Intent intent = new Intent(getApplicationContext(), RecyclerView_sample_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.asynctask_activity_btn)
+    public void goToAsyncTaskActivity(){
+        Intent intent = new Intent(getApplicationContext(), AsyncTask_Activity.class);
         startActivity(intent);
     }
 
