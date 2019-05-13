@@ -217,6 +217,8 @@ Observable.create()
 
 <img src ="https://user-images.githubusercontent.com/30828236/57628090-37ba8d00-75d4-11e9-97da-36f1c9a699c2.png"/>
 
+- - -
+
 #### AsyncTask 동작 원리
 
 <img width=600 height=700 src = "https://user-images.githubusercontent.com/30828236/57628258-87995400-75d4-11e9-98d2-44847c140d03.png"/>
