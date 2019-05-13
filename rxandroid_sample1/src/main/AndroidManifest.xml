@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.AsyncTask_Activity"></activity>
+        <activity android:name=".activities.Timer_Sample_Activity" />
         <activity android:name=".activities.RecyclerView_sample_Activity" />
         <activity android:name=".activities.Search_Activity" />
         <activity android:name=".activities.Onclick_Activity" />

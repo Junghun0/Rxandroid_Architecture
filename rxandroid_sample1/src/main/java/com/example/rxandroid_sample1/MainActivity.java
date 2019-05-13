@@ -10,6 +10,7 @@ import com.example.rxandroid_sample1.activities.Loop_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
 import com.example.rxandroid_sample1.activities.RecyclerView_sample_Activity;
 import com.example.rxandroid_sample1.activities.Search_Activity;
+import com.example.rxandroid_sample1.activities.Timer_Sample_Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     Button onclick_search_btn;
     @BindView(R.id.onclick_recycler_btn)
     Button onclick_recycler_btn;
+    @BindView(R.id.timer_activity_btn)
+    Button timer_activity_btn;
+
 
     private Unbinder mUnbinder;
 
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.onclick_recycler_btn)
-    public void goToRecyclerviewActivity(){
+    public void goToRecyclerViewActivity(){
         Intent intent = new Intent(getApplicationContext(), RecyclerView_sample_Activity.class);
         startActivity(intent);
     }
@@ -73,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.asynctask_activity_btn)
     public void goToAsyncTaskActivity(){
         Intent intent = new Intent(getApplicationContext(), AsyncTask_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.timer_activity_btn)
+    public void goToTimerActivity(){
+        Intent intent = new Intent(getApplicationContext(), Timer_Sample_Activity.class);
         startActivity(intent);
     }
 

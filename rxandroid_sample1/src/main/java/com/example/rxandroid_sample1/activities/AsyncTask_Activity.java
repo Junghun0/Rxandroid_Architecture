@@ -17,6 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 public class AsyncTask_Activity extends AppCompatActivity {
+
     private static final String TAG = "AsyncTask_Activity";
     private MyTask myTask;
 
@@ -103,5 +104,3 @@ public class AsyncTask_Activity extends AppCompatActivity {
         };
     }
 }
-
-

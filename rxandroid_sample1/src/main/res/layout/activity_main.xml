@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="30dp"
         android:text="Sample_1" />
 
     <Button
@@ -48,6 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="asynctask activity"/>
+
+    <Button
+        android:id="@+id/timer_activity_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="timer activity"/>
 
 
 </LinearLayout>

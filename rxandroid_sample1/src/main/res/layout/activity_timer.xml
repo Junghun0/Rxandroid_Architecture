@@ -5,20 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.AsyncTask_Activity">
+    tools:context=".activities.Timer_Sample_Activity">
 
-    <TextView
-        android:id="@+id/async_test_txtview"
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="25sp"/>
+        android:text="TimerTask" />
 
-    <TextView
-        android:id="@+id/rxandroid_async_txtview"
+    <Button
+        android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:text="CountDownTask" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Handler" />
+
+    <TextView
+        android:id="@+id/timer_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="25sp"/>
 
 </LinearLayout>
