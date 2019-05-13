@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.example.rxandroid_sample1.activities.HelloActivityV1;
 import com.example.rxandroid_sample1.activities.Loop_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
+import com.example.rxandroid_sample1.activities.RecyclerView_sample_Activity;
 import com.example.rxandroid_sample1.activities.Search_Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Button onclick_activity_btn;
     @BindView(R.id.onclick_search_btn)
     Button onclick_search_btn;
+    @BindView(R.id.onclick_recycler_btn)
+    Button onclick_recycler_btn;
 
     private Unbinder mUnbinder;
 
@@ -57,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.onclick_search_btn)
     public void goToSearchActivity(){
         Intent intent = new Intent(getApplicationContext(), Search_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.onclick_recycler_btn)
+    public void goToRecyclerviewActivity(){
+        Intent intent = new Intent(getApplicationContext(), RecyclerView_sample_Activity.class);
         startActivity(intent);
     }
 
