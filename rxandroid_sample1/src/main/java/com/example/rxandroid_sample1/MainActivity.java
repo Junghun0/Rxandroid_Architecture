@@ -7,6 +7,7 @@ import android.widget.Button;
 import com.example.rxandroid_sample1.activities.AsyncTask_Activity;
 import com.example.rxandroid_sample1.activities.HelloActivityV1;
 import com.example.rxandroid_sample1.activities.Loop_Activity;
+import com.example.rxandroid_sample1.activities.Memory_Leak_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
 import com.example.rxandroid_sample1.activities.Polling_Activity;
 import com.example.rxandroid_sample1.activities.RecyclerView_sample_Activity;
@@ -110,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.retrofit_sample_btn)
     public void goToRetrofitActivitiy(){
         Intent intent = new Intent(getApplicationContext(), Retrofit_Sample_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.memory_activity_btn)
+    public void goToMemoryActivity(){
+        Intent intent = new Intent(getApplicationContext(), Memory_Leak_Activity.class);
         startActivity(intent);
     }
 

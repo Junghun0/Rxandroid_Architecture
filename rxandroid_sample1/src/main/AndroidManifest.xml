@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Retrofit_Sample_Activity"></activity>
+        <activity android:name=".activities.Memory_Leak_Activity"></activity>
+        <activity android:name=".activities.Retrofit_Sample_Activity" />
         <activity android:name=".activities.Volley_Sample_Activity" />
         <activity android:name=".activities.Polling_Activity" />
         <activity android:name=".activities.AsyncTask_Activity" />
