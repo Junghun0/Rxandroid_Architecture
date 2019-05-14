@@ -12,6 +12,7 @@ import com.example.rxandroid_sample1.activities.Polling_Activity;
 import com.example.rxandroid_sample1.activities.RecyclerView_sample_Activity;
 import com.example.rxandroid_sample1.activities.Search_Activity;
 import com.example.rxandroid_sample1.activities.Timer_Sample_Activity;
+import com.example.rxandroid_sample1.activities.Volley_Sample_Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     Button timer_activity_btn;
     @BindView(R.id.polling_activity_btn)
     Button polling_activity_btn;
+    @BindView(R.id.volley_activity_btn)
+    Button volley_activity_btn;
 
 
     private Unbinder mUnbinder;
@@ -92,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.polling_activity_btn)
     public void goToPollingActivity(){
         Intent intent = new Intent(getApplicationContext(), Polling_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.volley_activity_btn)
+    public void goToVolleyActivity(){
+        Intent intent = new Intent(getApplicationContext(), Volley_Sample_Activity.class);
         startActivity(intent);
     }
 

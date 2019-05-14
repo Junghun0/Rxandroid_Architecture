@@ -64,5 +64,12 @@
         android:layout_gravity="center"
         android:text="polling activity"/>
 
+    <Button
+        android:id="@+id/volley_activity_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="volley activity"/>
+
 
 </LinearLayout>
