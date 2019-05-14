@@ -10,6 +10,7 @@ import com.example.rxandroid_sample1.activities.Loop_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
 import com.example.rxandroid_sample1.activities.Polling_Activity;
 import com.example.rxandroid_sample1.activities.RecyclerView_sample_Activity;
+import com.example.rxandroid_sample1.activities.Retrofit_Sample_Activity;
 import com.example.rxandroid_sample1.activities.Search_Activity;
 import com.example.rxandroid_sample1.activities.Timer_Sample_Activity;
 import com.example.rxandroid_sample1.activities.Volley_Sample_Activity;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     Button polling_activity_btn;
     @BindView(R.id.volley_activity_btn)
     Button volley_activity_btn;
+    @BindView(R.id.retrofit_sample_btn)
+    Button retrofit_activitiy_btn;
 
 
     private Unbinder mUnbinder;
@@ -101,6 +104,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.volley_activity_btn)
     public void goToVolleyActivity(){
         Intent intent = new Intent(getApplicationContext(), Volley_Sample_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.retrofit_sample_btn)
+    public void goToRetrofitActivitiy(){
+        Intent intent = new Intent(getApplicationContext(), Retrofit_Sample_Activity.class);
         startActivity(intent);
     }
 

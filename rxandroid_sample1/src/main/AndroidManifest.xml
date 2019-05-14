@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rxandroid_sample1">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Volley_Sample_Activity"></activity>
+        <activity android:name=".activities.Retrofit_Sample_Activity"></activity>
+        <activity android:name=".activities.Volley_Sample_Activity" />
         <activity android:name=".activities.Polling_Activity" />
         <activity android:name=".activities.AsyncTask_Activity" />
         <activity android:name=".activities.Timer_Sample_Activity" />
