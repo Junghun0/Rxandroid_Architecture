@@ -1,7 +1,6 @@
 package com.example.mvp_rxjava.adapter;
 
 import android.support.annotation.NonNull;
-import androidx.appcompat.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import com.example.mvp_rxjava.data.DailyBoxOfficeList;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder> {
 
@@ -106,7 +107,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         TextView movie_today_audience_textView;
         ImageView movie_imageView;
 
-        public MovieViewHolder(@NonNull View itemView) {
+        public MovieViewHolder(View itemView) {
             super(itemView);
             movie_rank_textView = itemView.findViewById(R.id.movie_rank_textView);
             movie_title_textView = itemView.findViewById(R.id.movie_title_textView);

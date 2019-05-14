@@ -8,6 +8,7 @@ import com.example.rxandroid_sample1.activities.AsyncTask_Activity;
 import com.example.rxandroid_sample1.activities.HelloActivityV1;
 import com.example.rxandroid_sample1.activities.Loop_Activity;
 import com.example.rxandroid_sample1.activities.Onclick_Activity;
+import com.example.rxandroid_sample1.activities.Polling_Activity;
 import com.example.rxandroid_sample1.activities.RecyclerView_sample_Activity;
 import com.example.rxandroid_sample1.activities.Search_Activity;
 import com.example.rxandroid_sample1.activities.Timer_Sample_Activity;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     Button onclick_recycler_btn;
     @BindView(R.id.timer_activity_btn)
     Button timer_activity_btn;
+    @BindView(R.id.polling_activity_btn)
+    Button polling_activity_btn;
 
 
     private Unbinder mUnbinder;
@@ -83,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.timer_activity_btn)
     public void goToTimerActivity(){
         Intent intent = new Intent(getApplicationContext(), Timer_Sample_Activity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.polling_activity_btn)
+    public void goToPollingActivity(){
+        Intent intent = new Intent(getApplicationContext(), Polling_Activity.class);
         startActivity(intent);
     }
 
