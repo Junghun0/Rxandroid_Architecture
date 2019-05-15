@@ -1,6 +1,5 @@
 package com.example.mvp_rxjava.adapter;
 
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import com.example.mvp_rxjava.data.DailyBoxOfficeList;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder> {
@@ -22,14 +22,16 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
     interface MovieRecyclerClickListener {
         void onDetailClickListener();
     }
-    
+
     private MovieRecyclerClickListener mListener;
     private MainActivity mContext;
-    
+
     private List<DailyBoxOfficeList> mItems = new ArrayList<>();
     private List<String> mThumNailsList = new ArrayList<>();
 
-    public MovieRecyclerAdapter(MainActivity mContext) {this.mContext = mContext;}
+    public MovieRecyclerAdapter(MainActivity mContext) {
+        this.mContext = mContext;
+    }
 
     public MovieRecyclerAdapter(MovieRecyclerClickListener listener) {
         mListener = listener;
@@ -40,15 +42,10 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         notifyDataSetChanged();
     }
 
-    public void addThumNail(String imageURL){
-        mThumNailsList.add(imageURL);
-    }
-
-    public void setItemThumbnail(List<String> thumbnail){
+    public void setItemThumbnail(List<String> thumbnail) {
         this.mThumNailsList = thumbnail;
         notifyDataSetChanged();
     }
-
 
     @NonNull
     @Override
@@ -75,20 +72,20 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-         DailyBoxOfficeList dailyBoxOfficeList = mItems.get(position);
+        DailyBoxOfficeList dailyBoxOfficeList = mItems.get(position);
 
-         holder.movie_rank_textView.setText(dailyBoxOfficeList.getRank());
-         holder.movie_title_textView.setText(dailyBoxOfficeList.getMovieNm());
-         holder.movie_audience_rate_textView.setText(dailyBoxOfficeList.getAudiChange());
-         holder.movie_openDate_textView.setText(dailyBoxOfficeList.getOpenDt());
-         holder.movie_sales_textView.setText(dailyBoxOfficeList.getSalesAmt());
-         holder.movie_totalSales_textView.setText(dailyBoxOfficeList.getSalesAcc());
-         holder.movie_audience_textView.setText(dailyBoxOfficeList.getAudiAcc());
-         holder.movie_today_audience_textView.setText(dailyBoxOfficeList.getAudiCnt());
+        holder.movie_rank_textView.setText(dailyBoxOfficeList.getRank());
+        holder.movie_title_textView.setText(dailyBoxOfficeList.getMovieNm());
+        holder.movie_audience_rate_textView.setText(dailyBoxOfficeList.getAudiChange());
+        holder.movie_openDate_textView.setText(dailyBoxOfficeList.getOpenDt());
+        holder.movie_sales_textView.setText(dailyBoxOfficeList.getSalesAmt());
+        holder.movie_totalSales_textView.setText(dailyBoxOfficeList.getSalesAcc());
+        holder.movie_audience_textView.setText(dailyBoxOfficeList.getAudiAcc());
+        holder.movie_today_audience_textView.setText(dailyBoxOfficeList.getAudiCnt());
 
-         if (mThumNailsList.size() == 10){
-             Glide.with(mContext).load(mThumNailsList.get(position)).into(holder.movie_imageView);
-         }
+        if (mThumNailsList.size() == 10) {
+            Glide.with(mContext).load(mThumNailsList.get(position)).into(holder.movie_imageView);
+        }
     }
 
     @Override
@@ -118,7 +115,6 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
             movie_audience_textView = itemView.findViewById(R.id.movie_audience_textView);
             movie_today_audience_textView = itemView.findViewById(R.id.movie_today_audience_textView);
             movie_imageView = itemView.findViewById(R.id.movie_imageView);
-            // TODO : 뷰홀더 완성하시오
         }
     }
 }

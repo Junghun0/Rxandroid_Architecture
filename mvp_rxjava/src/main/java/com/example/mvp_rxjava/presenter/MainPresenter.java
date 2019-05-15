@@ -3,9 +3,9 @@ package com.example.mvp_rxjava.presenter;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.mvp_rxjava.data.MovieDetail;
 import com.example.mvp_rxjava.data.ServerResponse;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MainPresenter implements MainContractor.Presenter, MainContractor.GetServerResponse.OnFinishedListener, MainContractor.GetMovieDetails.OnFinishedListener {
@@ -36,8 +36,8 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
     }
 
     @Override
-    public void getMovieThumbNail(Context context, String query) {
-        getMovieDetails.getMovieDetail(this, query);
+    public void getMovieThumbNail(Context context, String query, HashMap<String, String> maps) {
+        getMovieDetails.getMovieDetail(this, query, maps);
     }
 
     @Override
@@ -46,22 +46,12 @@ public class MainPresenter implements MainContractor.Presenter, MainContractor.G
     }
 
     @Override
-    public void onFinished(MovieDetail movieDetail) {
-        view.setMovieDetails(movieDetail);
+    public void onFinished(String thumbNailURL, HashMap<String, String> maps) {
+        view.getThumbNailMap(maps);
     }
 
     @Override
     public void onFailure(Throwable t) {
         Log.e("network Fail", "" + t.toString());
-    }
-
-    @Override
-    public void sendMovieNames(List<String> movieNames) {
-        if (movieNames.size() == 10){
-            for (int i = 0; i < movieNames.size(); i++) {
-                Log.e("at mainpresenter",""+movieNames.get(i));
-            }
-        }
-
     }
 }

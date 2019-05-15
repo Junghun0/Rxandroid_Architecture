@@ -1,13 +1,9 @@
 package com.example.mvp_rxjava;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutManager;
-import androidx.appcompat.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.example.mvp_rxjava.adapter.MovieRecyclerAdapter;
-import com.example.mvp_rxjava.data.MovieDetail;
 import com.example.mvp_rxjava.data.ServerResponse;
 import com.example.mvp_rxjava.presenter.GetMovieDetailsImpl;
 import com.example.mvp_rxjava.presenter.GetServerResponseImpl;
@@ -18,9 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -33,11 +34,15 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     private SimpleDateFormat todayFormat;
     private String targetDt;
     private List<String> movieNames;
+    private List<String> thumbNailList;
+    private int count = 0;
 
     @BindView(R.id.movie_recyclerView)
     RecyclerView movie_recyclerView;
     @BindView(R.id.date_textView)
     TextView date_textView;
+
+    private HashMap<String, String> thumbNailsMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         ButterKnife.bind(this);
 
         movieNames = new ArrayList<>();
+        thumbNailList = new ArrayList<>();
 
         mainPresenter = new MainPresenter(this, new GetServerResponseImpl(), new GetMovieDetailsImpl());
         mainPresenter.attachView(this);
@@ -64,6 +70,20 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     }
 
     @Override
+    public void getThumbNailMap(Map<String, String> maps) {
+        count++;
+        if (count == 10) {
+            for (int i = 0 ; i < 10 ; i++){
+                thumbNailList.add(maps.get(movieNames.get(i)));
+                if (thumbNailList.size() == 10) {
+                    adapter.setItemThumbnail(thumbNailList);
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         mainPresenter.detachView();
         super.onDestroy();
@@ -76,19 +96,10 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
 
     @Override
     public void showImageURL(ServerResponse serverResponse) {
-//        if (serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size() == 10){
-//            for (int i = 0; i < serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size() ; i++){
-//                mainPresenter.getMovieThumbNail(this,serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
-//            }
-//        }
-    }
-
-    @Override
-    public void showImageURL(List<String> movienames) {
-        if (movienames.size() == 10){
-            for (int i = 0 ; i < movienames.size() ; i++){
-                mainPresenter.getMovieThumbNail(this, movieNames.get(i));
-            }
+        for (int i = 0 ; i<serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size(); i++){
+            thumbNailsMap.put(serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm(),"");
+            movieNames.add(serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
+            mainPresenter.getMovieThumbNail(this, serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm(),thumbNailsMap);
         }
     }
 
@@ -99,18 +110,8 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     }
 
     @Override
-    public void setMovieDetails(MovieDetail movieDetails) {
-//        Log.e("at Main-", "" + movieDetails.getItems().get(0).getImage());
-//        movieNames.add(movieDetails.getItems().get(0).getImage());
-//        Log.e("at Main-", "" + movieDetails.getItems().size());
-//        if (movieNames.size() == 10) {
-//            adapter.setItemThumbnail(movieNames);
-//        }
-    }
-
-    @Override
     public void setTodayDate(String todayDate) {
-        date_textView.setText(todayDate + R.string.boxoffice);
+        date_textView.setText(todayDate + " 박스오피스 순위");
     }
 
     @Override
