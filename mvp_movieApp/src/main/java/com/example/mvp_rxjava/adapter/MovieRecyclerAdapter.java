@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mvp_rxjava.MainActivity;
@@ -61,6 +62,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
                     viewHolder.movie_imageView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            Toast.makeText(mContext, "test", Toast.LENGTH_SHORT).show();
                             mListener.onDetailClickListener();
                         }
                     });
