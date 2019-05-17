@@ -1,6 +1,8 @@
-package com.example.todoapp_mvp;
+package com.example.todoapp_mvp.mainview;
 
 import android.os.Bundle;
+
+import com.example.todoapp_mvp.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
