@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder> {
 
+
     public interface MovieRecyclerClickListener {
         void onDetailClickListener(int position, String name);
     }

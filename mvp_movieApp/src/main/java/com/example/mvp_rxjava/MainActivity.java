@@ -4,9 +4,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mvp_rxjava.adapter.MovieRecyclerAdapter;
 import com.example.mvp_rxjava.data.ServerResponse;
@@ -14,6 +14,7 @@ import com.example.mvp_rxjava.presenter.GetMovieDetailsImpl;
 import com.example.mvp_rxjava.presenter.GetServerResponseImpl;
 import com.example.mvp_rxjava.presenter.MainContractor;
 import com.example.mvp_rxjava.presenter.MainPresenter;
+import com.example.mvp_rxjava.view.DetailsFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MainActivity extends AppCompatActivity implements MainContractor.View, MovieRecyclerAdapter.MovieRecyclerClickListener {
+public class MainActivity extends AppCompatActivity implements MainContractor.View, MovieRecyclerAdapter.MovieRecyclerClickListener{
     //key f8528e508b93d59e755310d63eb0455a
 
     private MainPresenter mainPresenter;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     TextView date_textView;
     @BindView(R.id.progressbar)
     ProgressBar progressBar;
+    @BindView(R.id.content_frameLayout)
+    FrameLayout content_frameLayout;
 
     private Unbinder mUnbinder;
 
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
 
     @Override
     public void onDetailClickListener(int position, String name) {
-        Toast.makeText(this, "position->" + position + " , " + name, Toast.LENGTH_SHORT).show();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frameLayout , DetailsFragment.newInstance(name)).addToBackStack(null).commit();
     }
 }
 
