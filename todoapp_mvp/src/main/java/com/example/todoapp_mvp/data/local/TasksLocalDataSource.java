@@ -6,6 +6,7 @@ import com.example.todoapp_mvp.data.TasksDataSource;
 import androidx.annotation.NonNull;
 
 public class TasksLocalDataSource implements TasksDataSource {
+
     @Override
     public void getTasks(@NonNull LoadTasksCallback callback) {
 

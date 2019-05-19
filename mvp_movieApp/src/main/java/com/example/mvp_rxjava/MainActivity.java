@@ -1,7 +1,12 @@
 package com.example.mvp_rxjava;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mvp_rxjava.adapter.MovieRecyclerAdapter;
 import com.example.mvp_rxjava.data.ServerResponse;
@@ -24,8 +29,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-public class MainActivity extends AppCompatActivity implements MainContractor.View {
+public class MainActivity extends AppCompatActivity implements MainContractor.View, MovieRecyclerAdapter.MovieRecyclerClickListener {
     //key f8528e508b93d59e755310d63eb0455a
 
     private MainPresenter mainPresenter;
@@ -41,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     RecyclerView movie_recyclerView;
     @BindView(R.id.date_textView)
     TextView date_textView;
+    @BindView(R.id.progressbar)
+    ProgressBar progressBar;
+
+    private Unbinder mUnbinder;
 
     private HashMap<String, String> thumbNailsMap = new HashMap<>();
 
@@ -48,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        mUnbinder = ButterKnife.bind(this);
 
         movieNames = new ArrayList<>();
         thumbNailList = new ArrayList<>();
@@ -59,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         initRecyclerView();
         getDateInfo();
         showResult();
+
+        adapter.setMovieRecyclerClickListener(this);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.rgb(103,58,183), PorterDuff.Mode.MULTIPLY);
     }
 
     @Override
@@ -73,11 +86,14 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     public void getThumbNailMap(Map<String, String> maps) {
         count++;
         if (count == 10) {
-            for (int i = 0 ; i < 10 ; i++){
+            for (int i = 0; i < 10; i++) {
                 thumbNailList.add(maps.get(movieNames.get(i)));
                 if (thumbNailList.size() == 10) {
                     adapter.setItemThumbnail(thumbNailList);
+                    progressBar.setVisibility(View.GONE);
                     break;
+                }else{
+                    progressBar.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -86,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
     @Override
     protected void onDestroy() {
         mainPresenter.detachView();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
         super.onDestroy();
     }
 
@@ -96,10 +115,10 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
 
     @Override
     public void showImageURL(ServerResponse serverResponse) {
-        for (int i = 0 ; i<serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size(); i++){
-            thumbNailsMap.put(serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm(),"");
+        for (int i = 0; i < serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().size(); i++) {
+            thumbNailsMap.put(serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm(), "");
             movieNames.add(serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm());
-            mainPresenter.getMovieThumbNail(this, serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm(),thumbNailsMap);
+            mainPresenter.getMovieThumbNail(this, serverResponse.getBoxOfficeResult().getDailyBoxOfficeList().get(i).getMovieNm(), thumbNailsMap);
         }
     }
 
@@ -124,6 +143,11 @@ public class MainActivity extends AppCompatActivity implements MainContractor.Vi
         String todayDate = dateFormat.format(calendar.getTime());
         targetDt = todayFormat.format(calendar.getTime());
         setTodayDate(todayDate);
+    }
+
+    @Override
+    public void onDetailClickListener(int position, String name) {
+        Toast.makeText(this, "position->" + position + " , " + name, Toast.LENGTH_SHORT).show();
     }
 }
 

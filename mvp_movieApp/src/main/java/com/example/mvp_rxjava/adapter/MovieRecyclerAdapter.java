@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mvp_rxjava.MainActivity;
@@ -20,11 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder> {
 
-    interface MovieRecyclerClickListener {
-        void onDetailClickListener();
+    public interface MovieRecyclerClickListener {
+        void onDetailClickListener(int position, String name);
     }
 
     private MovieRecyclerClickListener mListener;
+
+    public void setMovieRecyclerClickListener(MovieRecyclerClickListener movieRecyclerClickListener){
+        mListener = movieRecyclerClickListener;
+    }
+
     private MainActivity mContext;
 
     private List<DailyBoxOfficeList> mItems = new ArrayList<>();
@@ -32,10 +36,6 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     public MovieRecyclerAdapter(MainActivity mContext) {
         this.mContext = mContext;
-    }
-
-    public MovieRecyclerAdapter(MovieRecyclerClickListener listener) {
-        mListener = listener;
     }
 
     public void setItems(List<DailyBoxOfficeList> items) {
@@ -50,22 +50,16 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
 
     @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int position) {
+    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int pㅛsition) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_item_layout, parent, false);
         final MovieViewHolder viewHolder = new MovieViewHolder(view);
-        view.setOnClickListener(new View.OnClickListener() {
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mListener != null) {
-                    final int pos = position;
-                    viewHolder.movie_imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(mContext, "test", Toast.LENGTH_SHORT).show();
-                            mListener.onDetailClickListener();
-                        }
-                    });
+                if (mListener != null){
+                    mListener.onDetailClickListener(viewHolder.getAdapterPosition(),viewHolder.movie_title_textView.getText().toString());
                 }
             }
         });
@@ -86,7 +80,7 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
         holder.movie_today_audience_textView.setText(dailyBoxOfficeList.getAudiCnt());
 
         if (mThumNailsList.size() == 10) {
-            Glide.with(mContext).load(mThumNailsList.get(position)).into(holder.movie_imageView);
+            Glide.with(mContext).load(mThumNailsList.get(position)).placeholder(R.drawable.ic_sync_problem_black_24dp).into(holder.movie_imageView);
         }
 
 
