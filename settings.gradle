@@ -1,1 +1,1 @@
-include ':app', ':mvp_sample2', ':mvp_movieApp', ':rxandroid_sample1', ':movieapp', ':todoapp_mvp'
+include ':app', ':mvp_sample2', ':mvp_movieApp', ':rxandroid_sample1', ':movieapp', ':todoapp_mvp', ':databinding_sample'
