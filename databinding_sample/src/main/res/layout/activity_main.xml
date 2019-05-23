@@ -5,6 +5,10 @@
         <variable
             name="user"
             type="com.example.databinding_sample.data.User" />
+
+        <variable
+            name="activity"
+            type="com.example.databinding_sample.MainActivity"/>
     </data>
 
     <LinearLayout
@@ -24,16 +28,30 @@
             android:layout_height="wrap_content"
             android:text="@{user.lastName, default=defaults}" />
 
-        <Button
-            android:id="@+id/show_button"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="show recyclerview"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/show_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="show recyclerview"/>
+
+            <Button
+                android:id="@+id/observable_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="on_Value_Changed"
+                android:onClick="@{activity::onValueChanged}"/>
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/frame_layout_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
     </LinearLayout>
 </layout>

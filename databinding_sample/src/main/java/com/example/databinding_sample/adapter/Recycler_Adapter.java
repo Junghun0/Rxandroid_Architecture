@@ -23,9 +23,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.Bind
     @Override
     public BindingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_layout,parent,false);
-        BindingViewHolder holder = new BindingViewHolder(view);
-
-        return holder;
+        return new BindingViewHolder(view);
     }
 
     public void setmList(List<User> list){
