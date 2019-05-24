@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.viewmodelsample.databinding.ActivityMainBinding;
+import com.example.viewmodelsample.sample1.CountViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,6 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(CountViewModel.class);
         binding.setViewModel(viewModel);
-        binding.setLifecycleOwner(this);
+        //binding.setLifecycleOwner(this);
     }
 }

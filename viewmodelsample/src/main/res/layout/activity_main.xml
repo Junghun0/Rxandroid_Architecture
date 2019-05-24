@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.viewmodelsample.CountViewModel" />
+            type="com.example.viewmodelsample.sample1.CountViewModel" />
     </data>
 
     <LinearLayout

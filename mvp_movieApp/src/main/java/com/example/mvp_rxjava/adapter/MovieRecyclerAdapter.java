@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.mvp_rxjava.MainActivity;
 import com.example.mvp_rxjava.R;
@@ -13,9 +16,6 @@ import com.example.mvp_rxjava.data.DailyBoxOfficeList;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdapter.MovieViewHolder> {
 
@@ -38,6 +38,15 @@ public class MovieRecyclerAdapter extends RecyclerView.Adapter<MovieRecyclerAdap
     public MovieRecyclerAdapter(MainActivity mContext) {
         this.mContext = mContext;
     }
+
+    /*
+    item 속성을 구분지을 때 사용하면된다
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+     */
+
 
     public void setItems(List<DailyBoxOfficeList> items) {
         this.mItems = items;
