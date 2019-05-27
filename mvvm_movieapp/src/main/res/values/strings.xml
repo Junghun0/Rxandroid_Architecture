@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mvvm_movieApp</string>
+    <string name="more">더보기</string>
+</resources>

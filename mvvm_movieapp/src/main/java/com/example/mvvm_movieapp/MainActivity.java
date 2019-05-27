@@ -1,16 +1,14 @@
-package com.example.mvp_rxjava.view;
+package com.example.mvvm_movieapp;
 
 import android.os.Bundle;
 
-import com.example.mvp_rxjava.R;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Splash2_Activity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash2);
+        setContentView(R.layout.recycler_item_layout);
     }
 }

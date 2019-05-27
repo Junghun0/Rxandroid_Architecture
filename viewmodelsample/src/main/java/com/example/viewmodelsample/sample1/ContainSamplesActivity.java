@@ -32,5 +32,6 @@ public class ContainSamplesActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Viewpager_Recycler_Activity.class);
             startActivity(intent);
         });
+
     }
 }
